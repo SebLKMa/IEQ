@@ -253,12 +253,8 @@ The most important utility to note is the use of skiptree data structure by **fo
 Skiptree is a tree data structure that provides range searching algorithm.  
 Our formulas structures are still small. For large tree structure efficiency, it is important to keep the tree balanced when creating the tree.  
 
-## TODOs - Detail Design for IEQ Device Management and Data Ingestion
-Do note below provides a more complete design required by an IEQ device.  
-These are to be reviewed before development.  
+## Sample Design for IEQ Device Management and Data Ingestion
+This is a sample design required by an IEQ device.  
 
 ### Device Data Model
 ![device-uml](./images/device-uml.png) 
-
-
-
