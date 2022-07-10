@@ -257,14 +257,6 @@ Our formulas structures are still small. For large tree structure efficiency, it
 Do note below provides a more complete design required by an IEQ device.  
 These are to be reviewed before development.  
 
-### Device Registration and Onboarding to Platform
-Modules depicted in the sequence diagram are subject to review, implementation and QA.  
-![uml-sequence-deployment](./images/uml-seq-deployment.png)
-
-### Data Ingestion
-Mdules depicted in the sequence diagram are subject to review, implementation and QA.  
-![uml-sequence-ingestion](./images/uml-seq-ingestion.png)
-
 ### Device Data Model
 ![device-uml](./images/device-uml.png) 
 
