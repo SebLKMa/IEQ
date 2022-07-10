@@ -1,0 +1,28 @@
+
+{{ define "hearts" }}
+{{ template "heartscss" . }}
+  <div>
+    <table>
+      <!-- no heading
+      <thead>
+        <tr>
+          <th>Office</th>
+          <th>Rating</th>
+        </tr>
+      </thead>
+      -->
+      <tbody>
+        <tr class="office_a">
+          <td>Rating</td>
+          <td>
+	          <div class="hearts-outer">
+	            <div class="hearts-inner"></div>
+	          </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  {{ template "scripthearts" . }}
+{{ end }}

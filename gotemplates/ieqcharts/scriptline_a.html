@@ -1,0 +1,82 @@
+{{ define "scriptline_a" }}
+<script language="javascript" type="text/javascript">
+/*
+
+SELECT strftime('%H:%M:%S',datetime(created_on, 'unixepoch', 'localtime')), temperature, humidity as created_on FROM metrics ORDER BY rowid DESC LIMIT 10;
+16:43:27|29.8700008392334|54.3899993896484
+16:33:11|29.7900009155273|55.6100006103516
+16:15:58|29.8600006103516|55.6300010681152
+15:49:23|29.8099994659424|56.7400016784668
+15:47:31|29.6599998474121|57.0999984741211
+15:46:37|29.6900005340576|56.8899993896484
+15:45:54|29.6599998474121|57.0499992370605
+15:29:37|29.7700004577637|56.5800018310547
+16:42:38|29.0900001525879|76.1600036621094
+15:13:21|29.6900005340576|69.6600036621094
+
+*/
+
+// The x-axis
+//var time = ["15:37:41","15:38:59","15:42:47","15:45:38","15:46:17","15:46:47","15:47:25","15:48:30","15:13:21","16:42:38"];
+var time = {{.Times}}
+// For drawing the lines
+//var temperature = [29.7000007629395,29.7199993133545,29.8700008392334,29.8700008392334,29.7999992370605,29.7900009155273,29.7900009155273,29.8299999237061,29.6900005340576,29.0900001525879];
+//var humidity = [63.4500007629395,63.5099983215332,63.0999984741211,62.9900016784668,63.25,63.0800018310547,63.1500015258789,63.1500015258789,69.6600036621094,76.1600036621094];
+var temperatures = {{.Temperatures}}
+var humidities = {{.Humidities}}
+var co2s = {{.CO2s}}
+var vocs = {{.VOCs}}
+var pm25s = {{.PM25s}}
+
+var ctx = document.getElementById("thermal-chart");
+var myChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: time,
+    datasets: [
+      { 
+        data: temperatures,
+        label: "Temperature(°C)",
+        borderColor: "rgba(62, 149, 205, 1)",
+        fill: false
+      },
+      { 
+        data: humidities,
+        label: "Humidity(%)",
+        borderColor: "rgba(62, 149, 205, 0.6)",
+        fill: false
+      }
+    ]
+  }
+});
+
+ctx = document.getElementById("iaq-chart");
+myChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: time,
+    datasets: [
+      { 
+        data: co2s,
+        label: "CO2(ppm)",
+        borderColor: "rgba(131, 151, 17, 0.3)",
+        fill: false
+      },
+      { 
+        data: vocs,
+        label: "VOC(ppb)",
+        borderColor: "rgba(131, 151, 17, 0.6)",
+        fill: false
+      },
+      { 
+        data: pm25s,
+        label: "PM2.5(ug/m3)",
+        borderColor: "rgba(131, 151, 17, 1)",
+        fill: false
+      }
+    ]
+  }
+});
+
+</script>
+{{ end }}

@@ -1,0 +1,20 @@
+{{ define "status" }}
+    {{ template "header" . }}
+    {{ template "customstyle" . }}
+    <main role="main">
+        <body>
+            <form action="latestmetrics" method="get">
+              <label style="color: red;">Device status: {{ .StatusDescription }}</label>
+              <!--
+              <table>
+                <tr>
+                  <th style="color: red;">Device Error</th>
+                  <th>{{ .StatusDescription }}</th>
+                </tr>
+              </table>
+              -->
+            </form>
+
+          </body>
+    </main>
+{{ end }}

@@ -1,0 +1,16 @@
+{{ define "chart" }}
+  {{ template "chartheader" . }}
+  {{ template "chartcss" . }}
+  <body>
+    <div class="wrapper">
+      <h1>IEQ</h1>
+      <label id="timestamp">{{.CreatedOn.Format "2006/01/02 15:04:05 UTC"}}</label>
+      
+      <canvas id="doughnut-chart" width="800" height="450"></canvas>
+    </div>
+    <!--
+    <script src="script.js"></script>
+    -->
+  </body>
+  {{ template "chartscript" . }}
+{{ end }}

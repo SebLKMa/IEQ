@@ -1,0 +1,25 @@
+{{ define "chart_a" }}
+  {{ template "chartheader" . }}
+  {{ template "chartcss" . }}
+  <body>
+    <div id="contain">
+      
+      <div class="panel-header" style="border: 3px solid rgb(138, 155, 161)">
+        <h1>Our Indoor Quality</h1>
+      </div>
+
+      <p id="timestamp">{{.IeqScores.CreatedOn}}</p>
+      
+      <div id="canvas-holder" style="width:50%;float: left;" class="col-xs-6">
+        <canvas id="doughnut-chart" width="800" height="450" style=" float:left;margin-left:2em"></canvas>
+      </div>
+      <div id="canvas-holder" style="width:50%;float: right;" class="col-xs-6">
+        <canvas id="bar-chart-stacked" width="800" height="450" style="float:right;margin-right:2em"></canvas>
+      </div>
+
+    </div>
+  </body>
+  
+  {{ template "scriptdonut_a" . }}
+  {{ template "scripthbarstacked_a" . }}
+{{ end }}

@@ -1,0 +1,21 @@
+{{ define "line_a" }}
+{{ template "chartheader" . }}
+{{ template "chartcss" . }}
+  <div class="wrapper">
+    <!--
+    <p>...</p>
+    -->
+    <hr class="solid"/>
+
+    <h1>Thermal values over time</h1>
+    <canvas id="thermal-chart" width="1600" height="900"></canvas>
+
+    <hr class="solid"/>
+
+    <h1>Indoor Air Quality values over time</h1>
+    <canvas id="iaq-chart" width="1600" height="900"></canvas>
+
+  </div>
+
+  {{ template "scriptline_a" . }}
+{{ end }}

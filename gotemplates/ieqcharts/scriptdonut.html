@@ -1,0 +1,97 @@
+{{ define "scriptdonut" }}
+<script language="javascript" type="text/javascript">
+
+// display timestamp as localtime
+var s = {{ .IeqScores.CreatedOn }}
+var dt = new Date(s);
+var dtstr = zerofill(dt.getDate()) + "/" + zerofill(dt.getMonth()+1) + "/" + dt.getFullYear() + "  " + zerofill(dt.getHours()) + ":" + zerofill(dt.getMinutes()) + ":" + zerofill(dt.getSeconds());
+document.getElementById("timestamp").innerHTML = dtstr
+
+/*
+sqlite> .headers on
+sqlite> SELECT datetime(created_on, 'unixepoch', 'localtime') as CreatedOn,* FROM ieqscores ORDER BY rowid DESC LIMIT 1;
+CreatedOn|device_id|created_on|scheme|thermal|iaq|lighting|noise|overall|thermal_weighting|iaq_weighting|lighting_weighting|noise_weighting
+2021-01-28 16:42:38|awair-omni_18453|1611823358|SPD-CUSTOM|12.5|20.0|13.75|26.4|72.65|25.0|20.0|22.0|33.0
+*/
+
+// remainder will have no label
+var components = ["Thermal Quality", "Indoor Air Quality", "Visual Quality", "Acoustic Quality", ""];
+//var scores = [25.5,15,8.25,26.4]; // the 4 IEQ scores
+//var total = scores.reduce((a, b) => a + b, 0) // iterate through the array, adding the current element value to the sum of the previous element values
+//var remainder = 100 - total
+//scores.push(remainder) // append to end of array
+var scores = [];
+scores.push({{ .IeqScores.Thermal }});
+scores.push({{ .IeqScores.IAQ }});
+scores.push({{ .IeqScores.Lighting }});
+scores.push({{ .IeqScores.Noise }});
+var total = {{ .IeqScores.Overall }};
+var remainder = 100 - total;
+scores.push(remainder); // append to end of array
+//total = total.toFixed(1) // to 1 decimal place
+total = Math.round(total) // to 1 decimal place
+
+// text inside doughnut
+// register plugin per chart onlhy
+
+var plugin = {
+  beforeDraw: function(chart) {
+    var width = chart.chart.width,
+        height = chart.chart.height,
+        ctx = chart.chart.ctx;
+
+    ctx.restore();
+    var fontSize = (height / 114).toFixed(2);
+    ctx.font = fontSize + "em sans-serif";
+    ctx.textBaseline = "middle";
+
+    var text = chart.options.centertext, // "75%",
+        textX = Math.round((width - ctx.measureText(text).width) / 2);
+    //var textY = height / 2 + (chart.titleBlock.height - 15); // when title display true
+
+    var legendHeight =  chart.legend.height;
+    var textY = height / 2 + legendHeight/2;
+    //textY = textY + legendHeight/2; // when title and legend display are true
+
+    ctx.fillText(text, textX, textY);
+    ctx.save();
+  }
+};
+
+// donut chart with remainder color transparent to background
+new Chart(document.getElementById("doughnut-chart"), {
+//var ctx = document.getElementById('doughnut-chart').getContext('2d');
+//var myChart = new Chart(ctx, {
+  plugins: [plugin],
+  type: 'doughnut',
+  data: {
+    labels: components,
+    datasets: [
+      {
+        label: "Indoor Environment Quality (percentage)",
+        backgroundColor: ["#3e95cd", "#839711","#e2d046","#e9a486","#FFFFFF"],
+        data: scores
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    title: {
+      display: false,
+      responsive: true,
+      text: 'Indoor Environment Quality (percentage) today'
+    },
+    legend: {
+      display: true,
+      responsive: true
+    },
+    centertext: total + "%"
+  }
+});
+
+function zerofill(i) {
+  return (i < 10 ? '0' : '') + i;
+}
+
+</script>
+{{ end }}

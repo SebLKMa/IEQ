@@ -1,0 +1,34 @@
+{{ define "customscript" }}
+<!-- custom scripts for show timer on popupBox when button is clicked -->
+<script language="javascript" type="text/javascript">
+    function zerofill(i) {
+        return (i < 10 ? '0' : '') + i;
+    }
+
+    function toLocalTime() {
+        var s = document.getElementById("timestamp").innerHTML
+
+        // Create date object from datetime string
+        var dt = new Date(s);
+
+        // Coverting to local datetime 
+        //document.write(dt.toString() + "<br>");
+        //document.getElementById("timestamp").innerHTML = dt.toLocaleString()
+        var dtstr = zerofill(dt.getDate()) + "/" + zerofill(dt.getMonth()+1) + "/" + dt.getFullYear() + "  " + zerofill(dt.getHours()) + ":" + zerofill(dt.getMinutes()) + ":" + zerofill(dt.getSeconds());
+        document.getElementById("timestamp").innerHTML = dtstr
+
+        // Coverting local datetime back to UTC
+        //document.write(date.toUTCString()); // Tue, 21 Apr 2020 09:20:30 GMT
+    }
+
+    function trimOverall() {
+        var s = document.getElementById("overall").innerHTML
+        document.getElementById("overall").innerHTML = s.replace(/[\n\r]+/g, '');
+    }
+
+    function refreshPage(){
+        window.location.reload(true);
+    } 
+</script>
+
+{{ end }}

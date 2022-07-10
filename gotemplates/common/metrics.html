@@ -1,0 +1,49 @@
+{{ define "metrics" }}
+    {{ template "header" . }}
+    {{ template "customstyle" . }}
+    <main role="main">
+        <body>
+            <form action="latestmetrics" method="get">
+              <br>
+              <h2>Raw Metrics</h2>
+              <!--
+              <fieldset>
+                <legend><span class="number">1</span>Latest Metrics</legend>
+                
+                <label for="name">Device:</label> 
+                <input type="text" id="device" name="device" value="{{ .DeviceID }}">
+                
+                <label for="email">Humidity:</label>
+                <input type="text" id="humidity" name="humidity" value="{{ .Humidity }}">
+                
+               </fieldset>
+              -->
+              <table>
+                <tr>
+                  <th>Device</th>
+                  <th>Temperature</th>
+                  <th>Humidity</th>
+                  <th>CO2</th>
+                  <th>VOC</th>
+                  <th>PM2.5</th>
+                  <th>Lighting</th>
+                  <th>Noise</th>
+                </tr>
+                <tr>
+                  <td>{{ .DeviceID }}</td>
+                  <td>{{ .Temperature }}</td>
+                  <td>{{ .Humidity }}</td>
+                  <td>{{ .CO2 }}</td>
+                  <td>{{ .VOC }}</td>
+                  <td>{{ .PM25 }}</td>
+                  <td>{{ .Lighting }}</td>
+                  <td>{{ .Noise }}</td>
+                </tr>
+
+              </table>
+
+            </form>
+        
+          </body>
+    </main>
+{{ end }}

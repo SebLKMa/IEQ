@@ -1,0 +1,41 @@
+# This config file maps to configs/appconfig.go
+# Formula configurations
+temperature:
+  Min: 23
+  Max: 25
+humidity:
+  Min: 55
+  Max: 70
+co2:
+  Min: 500
+  Max: 700
+voc:
+  Min: 44
+  Max: 750
+pm25:
+  Min: 15
+  Max: 37.5
+noise:
+  Min: 25
+  Max: 45
+lighting:
+  Min: 250
+  Max: 750
+  Scale: 1.5
+# Ratings Weighting configurations
+weightings:
+  scheme: KLIMA
+  thermal: 55.0
+  iaq: 45.0
+  lighting: 0
+  noise: 0
+# Task configurations
+task:
+  minutes: 5
+# Vendor
+vendor:
+  Name: uhoo
+  DeviceDisplayID: uhoo_device
+  DeviceID: 52ff6b066571525520131987
+  Org: sebmaspd@gmail.com
+  Token: <uhoo subscription key>

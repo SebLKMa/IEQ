@@ -1,0 +1,62 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+# After each change, do go run github.com/99designs/gqlgen generate .
+# or do go generate ./...
+# Then update resolver.go and implemnent codes in schema.resolvers.go
+
+type Metrics {
+	deviceId: String!
+	timestamp: Time!
+	temperature: Float!
+	humidity: Float!
+	co2: Float!
+	voc: Float!
+	pm25: Float!
+	lighting: Float!
+	noise: Float!
+}
+
+type MetricScores {
+	deviceId: String!
+	timestamp: Time!
+	temperature: Float!
+	humidity: Float!
+	co2: Float!
+	voc: Float!
+	pm25: Float!
+	lighting: Float!
+	noise: Float!
+}
+
+type IeqScores {
+	deviceId: String!
+	timestamp: Time!
+	scheme: String!
+	thermal: Float!
+	thermalweighting: Float!
+	iaq: Float!
+	iaqweighting: Float!
+	lighting: Float!
+	lightingweighting: Float!
+	noise: Float!
+	noiseweighting: Float!
+	overall: Float!
+}
+
+type Query {
+  latestmetrics(deviceId: String!): Metrics!
+  latestmetricscores(deviceId: String!): MetricScores!
+  latestieqscores(deviceId: String!): IeqScores!
+}
+
+input NewTodo {
+  text: String!
+  userId: String!
+}
+
+type Mutation {
+  createTodo(input: NewTodo!): MetricScores!
+}
+
+scalar Time

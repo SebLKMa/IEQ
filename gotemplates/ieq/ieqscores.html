@@ -1,0 +1,64 @@
+{{ define "ieqscores" }}
+    {{ template "header" . }}
+    {{ template "customstyle" . }}
+    
+    <main role="main">
+    
+        <body onload="toLocalTime();">
+            <form action="latestmetrics" method="get">
+              <table>
+                <tr>
+                  <th><h2>IEQ Overall</h2></th>
+                  <th><h2>{{ .Overall }}</h2></th>
+                  <th>
+                    <h3 id="timestamp">{{.CreatedOn.Format "2006/01/02 15:04:05 UTC"}}</h3>
+                  </th>
+                  <th>
+                    <a href="#" class="btn btn-lg ui-btn-inline my-btn-color" 
+                    onclick="refreshPage()"
+                    >
+                    <span class="glyphicon glyphicon-refresh"></span> Refresh
+                    </a>
+                  </th>
+                </tr>
+              </table>
+              <br>
+              <h2>IEQ Components Weighted Scores</h2>
+              <!--
+              <span id="createdon">{{.CreatedOn}}</span>
+              <h2>Created On: <span id="datetime"></span></h2>
+              -->
+              <table>
+                <tr>
+                  <th>Scheme: {{ .Scheme }}</th>
+                  <th>Thermal {{ .ThermalWeighting }}%</th>
+                  <th>IAQ {{ .IAQWeighting }}%</th>
+                  <th>Lighting {{ .LightingWeighting }}%</th>
+                  <th>Noise {{ .NoiseWeighting }}%</th>
+                </tr>
+                <tr>
+                  <td>Scores:</td>
+                  <td>{{ .Thermal }}</td>
+                  <td>{{ .IAQ }}</td>
+                  <td>{{ .Lighting }}</td>
+                  <td>{{ .Noise }}</td>
+                </tr>
+                <!--
+                <tr>
+                  <td>Component Weightings %</td>
+                  <td>{{ .ThermalWeighting }}</td>
+                  <td>{{ .IAQWeighting }}</td>
+                  <td>{{ .LightingWeighting }}</td>
+                  <td>{{ .NoiseWeighting }}</td>
+                </tr>
+              -->
+              </table>
+
+            </form>
+        
+          </body>
+    
+    </main>
+
+    {{ template "customscript" . }}
+{{ end }}

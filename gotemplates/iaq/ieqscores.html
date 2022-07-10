@@ -1,0 +1,50 @@
+{{ define "ieqscores" }}
+    {{ template "header" . }}
+    {{ template "customstyle" . }}
+    <main role="main">
+        <body onload="toLocalTime();">
+            <form action="latestmetrics" method="get">
+              
+              <h1>IAQ Scores Overall: {{ .Overall }}</h1>
+              <!--
+              <h2>{{.CreatedOn.Format "2006/01/02 15:04:05 UTC"}}</h2>
+              -->
+              <h2 id="timestamp">{{.CreatedOn.Format "2006/01/02 15:04:05 UTC"}}</h2>
+              
+              <h2>IAQ Components Weighted Scores</h2>
+              <!--
+              <span id="createdon">{{.CreatedOn}}</span>
+              <h2>Created On: <span id="datetime"></span></h2>
+              -->
+              <table>
+                <tr>
+                  <th>Scheme: {{ .Scheme }}</th>
+                  <th>Thermal {{ .ThermalWeighting }}%</th>
+                  <th>IAQ {{ .IAQWeighting }}%</th>
+                  <th>Lighting {{ .LightingWeighting }}%</th>
+                  <th>Noise {{ .NoiseWeighting }}%</th>
+                </tr>
+                <tr>
+                  <td>Scores:</td>
+                  <td>{{ .Thermal }}</td>
+                  <td>{{ .IAQ }}</td>
+                  <td>{{ .Lighting }}</td>
+                  <td>{{ .Noise }}</td>
+                </tr>
+                <!--
+                <tr>
+                  <td>Component Weightings %</td>
+                  <td>{{ .ThermalWeighting }}</td>
+                  <td>{{ .IAQWeighting }}</td>
+                  <td>{{ .LightingWeighting }}</td>
+                  <td>{{ .NoiseWeighting }}</td>
+                </tr>
+              -->
+              </table>
+
+            </form>
+        
+          </body>
+    </main>
+    {{ template "customscript" . }}
+{{ end }}

@@ -1,0 +1,89 @@
+{{ define "scripthbarstacked" }}
+<script language="javascript" type="text/javascript">
+
+// hardcoded for now
+var components = ["Thermal", "Indoor Air", "Visual", "Acoustic"];
+var tempeScore = [{{ .MetricScores.Temperature }}/2, , , ]
+var humidScore = [{{ .MetricScores.Humidity }}/2, , , ]
+var co2Score = [, ({{ .MetricScores.CO2 }}/3).toFixed(2), , ]
+var vocScore = [, ({{ .MetricScores.VOC }}/3).toFixed(2), , ]
+var pm25Score = [, ({{ .MetricScores.PM25 }}/3).toFixed(2), , ]
+var visualScore = [, , {{ .MetricScores.Lighting }}, ]
+var acousticScore = [, , , {{ .MetricScores.Noise }}]
+
+var config2 = {
+  type: 'horizontalBar',
+  data: {
+    labels: components,
+    datasets: [
+    {
+      label: "Temperature Score",
+      backgroundColor: "rgba(62, 149, 205, 0.8)",//"rgba(154,178,96,0.5)",
+      hoverBackgroundColor: "rgba(62, 149, 205, 1)",//"rgba(154,178,96,1)",
+      data: tempeScore
+    },
+    {
+      label: "Humidity Score",
+      backgroundColor: "rgba(62, 149, 205, 0.6)",//"rgba(197,213,167,0.5)",
+      hoverBackgroundColor: "rgba(62, 149, 205, 0.8)",//"rgba(197,213,167,1)",
+      data: humidScore
+    },
+    {
+      label: "CO2 Score",
+      backgroundColor: "rgba(131, 151, 17, 0.8)",//"rgba(154,178,96,0.5)",
+      hoverBackgroundColor: "rgba(131, 151, 17, 1)",//"rgba(154,178,96,1)",
+      data: co2Score
+    },
+    {
+      label: "VOC Score",
+      backgroundColor: "rgba(131, 151, 17, 0.6)",//"rgba(197,213,167,0.5)",
+      hoverBackgroundColor: "rgba(131, 151, 17, 0.8)",//"rgba(197,213,167,1)",
+      data: vocScore
+    },
+    {
+      label: "PM2.5 Score",
+      backgroundColor: "rgba(131, 151, 17, 0.8)",//"rgba(154,178,96,0.5)",
+      hoverBackgroundColor: "rgba(131, 151, 17, 1)",//"rgba(154,178,96,1)",
+      data: pm25Score
+    },
+    {
+      label: "Visual Score",
+      backgroundColor: "rgba(226, 208, 70, 0.7)",//"rgba(197,213,167,0.5)",
+      hoverBackgroundColor: "rgba(226, 208, 70, 1)",//"rgba(197,213,167,1)",
+      data: visualScore
+    },
+    {
+      label: "Acoustic Score",
+      backgroundColor: "rgba(233, 164, 134, 0.7)",//"rgba(154,178,96,0.5)",
+      hoverBackgroundColor: "rgba(233, 164, 134, 1)",//"rgba(154,178,96,1)",
+      data: acousticScore
+    }
+    ]
+  },
+  options: {
+    scales: {
+      xAxes: [{
+        stacked: true
+      }],
+      yAxes: [{
+        stacked: true
+      }]
+    },
+    /*tooltips: { display: false },*/
+    tooltips: {
+      enabled : true,
+      mode : "single"
+    },
+    title: {
+      display: true,
+      text: 'Scores by Categories'
+    },
+    legend: { display: false }
+  }
+};
+
+var ctx = document.getElementById("bar-chart-stacked").getContext("2d");
+new Chart(ctx, config2);
+
+</script>
+{{ end }}

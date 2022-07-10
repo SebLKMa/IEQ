@@ -1,0 +1,25 @@
+{{ define "scripthearts" }}
+<script>
+/*
+parts = 5,
+interval = 100/5 = 20
+for i=0;i<=parts;i++
+    x = 100-(interval*i)
+*/
+const rowName = 'office_a';
+const heartsCount = 5;
+var score = {{ .IeqScores.Overall }} / 100 * heartsCount;
+console.log("Hearts score: " + score)
+
+// Only 1 office for now
+const ratings = {
+  office_a : score
+};
+
+for(const rating in ratings) {  
+  const percentage = (ratings[rating] / heartsCount) * 100;
+  const percentageRounded = `${(Math.round(percentage / 10) * 10)}%`;
+  document.querySelector(`.${rating} .hearts-inner`).style.width = percentageRounded; 
+}
+</script>
+{{ end }}

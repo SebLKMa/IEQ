@@ -1,0 +1,37 @@
+{{ define "metricscores" }}
+    {{ template "header" . }}
+    {{ template "customstyle" . }}
+    <main role="main">
+        <body>
+            <form action="latestmetrics" method="get">
+              <br>
+              <h2>Metric Scores</h2>
+              <table>
+                <tr>
+                  <th>Device</th>
+                  <th>Temperature</th>
+                  <th>Humidity</th>
+                  <th>CO2</th>
+                  <th>VOC</th>
+                  <th>PM2.5</th>
+                  <th>Lighting</th>
+                  <th>Noise</th>
+                </tr>
+                <tr>
+                  <td>{{ .DeviceID }}</td>
+                  <td>{{ .Temperature }}</td>
+                  <td>{{ .Humidity }}</td>
+                  <td>{{ .CO2 }}</td>
+                  <td>{{ .VOC }}</td>
+                  <td>{{ .PM25 }}</td>
+                  <td>{{ .Lighting }}</td>
+                  <td>{{ .Noise }}</td>
+                </tr>
+
+              </table>
+
+            </form>
+        
+          </body>
+    </main>
+{{ end }}

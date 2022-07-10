@@ -1,0 +1,62 @@
+{{ define "heartscss" }}
+<style>
+table {
+  margin: 150px;
+  /*margin: 0 auto;*/
+  /*text-align: center;*/
+  /*border-collapse: collapse;*/
+  /*border: 1px solid #d4d4d4;*/
+  font-size: 20px;
+  background: #fff;
+}
+
+/* table header and the alternate rows */
+table th, 
+table tr:nth-child(2n+2) {
+  background: #e7e7e7;
+}
+  
+table th, 
+table td {
+  padding: 20px 50px;
+  font-size: 26px
+}
+  
+table th {
+  border-bottom: 1px solid #d4d4d4;
+}
+  
+.hearts-outer {
+  display: inline-block;
+  position: relative;
+  font-family: FontAwesome;
+  font-size: 32px
+}
+  
+/* add the 5 icons to the target pseudo-elements by setting their unicode characters.
+    https://www.w3schools.com/icons/fontawesome_icons_webapp.asp
+    https://www.w3schools.com/icons/tryit.asp?filename=tryicons_fa-heart-o
+    https://unicode-table.com/en/
+  */
+.hearts-outer::before {
+  content: "\f08a   \f08a   \f08a   \f08a   \f08a";
+}
+   
+.hearts-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0; /* width zero mean unfilled, comment or uncomment or 50% or dynamically set by js */
+  font-size: 32px
+}
+   
+/* https://www.hexcolortool.com/839811#dc6a6a */
+.hearts-inner::before {
+  content: "\f004   \f004   \f004   \f004   \f004";
+  color: #e77e7e;
+}
+
+</style>
+{{end}}
