@@ -1,5 +1,5 @@
 # IEQ POC
-This is an implementation of the a IEQ (Indoor Environment Quality) POC as described in [IEQ Confluence Page](https://<TODO>.atlassian.net/wiki/spaces/RND/pages/895942767/IEQ).
+This is an implementation of the a IEQ (Indoor Environment Quality) POC.
 
 ## High-level diagram
 
@@ -8,6 +8,7 @@ This is an implementation of the a IEQ (Indoor Environment Quality) POC as descr
 ## Build and run
 
 The POC is running at [IEQ-POC-Awair](http://168.63.237.138:8080/ieq/device?device_id=awair-omni_18453) and [IEQ-POC-uHoo](http://168.63.237.138:8080/ieq/device?device_id=uhoo_device).  
+***These are currently offline***
 
 There are just 2 processes to run, the **scoreserver** and **frontend**.
 
@@ -24,8 +25,8 @@ Implemented primarily in Go, the project's directory structure contains the modu
 Below outlines and their roles and functionalities.  
 
 ## configs
-This module contains the formula configurations as explained in [IEQ Confluence Pages](https://<TODO>.atlassian.net/wiki/spaces/RND/pages/911605897/IEQ+Index+Scoring+Methodology).  
-Currently a configuration is stored in yaml file and will be read by the application during runtime. (TODO: configuration to be stored and maintained in database). 
+This module contains the custom formula configurations based on IEQ Index Scoring Methodology.  
+Currently a configuration is stored in yaml file and will be read by the application during runtime.  
 
 Each configuration will be assigned to a IEQ device.  
 
@@ -44,7 +45,7 @@ For now, `db/postgres/connect.go` contains hardcoded database user and database 
 Run `db/postgres/setup.sh` to create the db tables.  
 
 ## formulas
-This module contains the implementation of the scoring formulas as explained in [IEQ Confluence Pages](https://<TODO>.atlassian.net/wiki/spaces/RND/pages/911605897/IEQ+Index+Scoring+Methodology).  
+This module contains the implementation of the scoring formulas based on IEQ Index Scoring Methodology.    
 
 Though the IEQ has 7 metrics (temperature, humidity, CO2, VOC, PM2.5, Noise, Lighting), the implementation has been refactored to 3 main types of formulas:  
 Formula | Description
