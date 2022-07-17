@@ -1,9 +1,9 @@
 # IEQ POC
 This is an implementation of the a IEQ (Indoor Environment Quality) POC.
 
-![ieq-dashboard](./images/IEQ Dashboard.png) 
+![ieq-dashboard](./images/IEQ-Dashboard.png) 
 
-![ieq-metrics](./images/IEQ Metrics.png) 
+![ieq-metrics](./images/IEQ-Metrics.png) 
 
 ## High-level architecture diagram
 
