@@ -1,5 +1,5 @@
-# IEQ POC
-This is an implementation of the a IEQ (Indoor Environment Quality) POC.
+# IEQ System
+This is an implementation of an IEQ (Indoor Environment Quality) System.
 
 ![ieq-dashboard](./images/IEQ-Dashboard.png) 
 
